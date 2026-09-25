@@ -150,6 +150,7 @@
         <div class="progress-top"><span id="qProgress">1 / 20</span><span id="qAnswered">답안 0개</span></div>
         <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:5%"></div></div>
       </div>
+      <button class="btn btn-primary" id="btnSubmitTop" style="display:none; margin-top:10px;">제출하기</button>
       <div class="q-head"><span class="tag" id="qTypeTag">문맥 추론</span></div>
       <div class="passage" id="qPassage" style="display:none;"></div>
       <div class="qtext" id="qText"></div>
@@ -2529,6 +2530,7 @@ function updateNav() {
 function renderQuestion() {
   const q = sessionQs[currentIdx];
   document.getElementById("qProgress").textContent = (currentIdx + 1) + " / " + SESSION_N;
+  document.getElementById("btnSubmitTop").style.display = (answers[SESSION_N - 1] !== -1) ? "" : "none";
   document.getElementById("qTypeTag").textContent = q.type;
   const pv = document.getElementById("qPassage");
   if (q.passage) {
@@ -2748,6 +2750,7 @@ document.getElementById("btnNavToggle").onclick = () => {
   document.getElementById("btnNavToggle").textContent = p.classList.contains("open") ? "문항 목록 닫기" : "문항 목록 보기";
 };
 document.getElementById("btnSubmit").onclick = submitQuiz;
+document.getElementById("btnSubmitTop").onclick = submitQuiz;
 document.getElementById("btnHome").onclick = () => {
   renderHistoryPanel(currentName);
   showScreen("screen-start");
